@@ -11,11 +11,10 @@
 
 ## Solution:- 
 ```sql
-SELECT p.product_id, g.id_value  AS shopify_id, p.product_id AS hotwax_id, g.good_identification_type_id AS netsuite_id
-FROM PRODUCT AS p
-JOIN GOOD_IDENTIFICATION AS g ON p.product_id = g.product_id
-WHERE g.good_identification_type_id IN ('ERP_ID', 'SHOPIFY_PROD_ID') AND g.id_value IS NOT NULL;
-```
+SELECT g1.product_id, g1.id_value  AS shopify_id, g1.product_id AS hotwax_id, g2.id_value AS netsuite_id
+FROM GOOD_IDENTIFICATION AS g1 
+JOIN GOOD_IDENTIFICATION AS g2 ON g2.product_id = g1.product_id
+WHERE g1.good_identification_type_id IN ('SHOPIFY_PROD_ID', 'SHOPIFY_PROD_SKU') AND g2.good_identification_type_id IN ('ERP_ID');```
 ![alt text](image.png)
 
-## Query Cost: 922535.44
+## Query Cost: 323050.92
